@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block content %}
+    <p>{{ page.title }}</p>
+      
+    <form action=''>
+        <input type='checkbox' id='answer1' >
+        <label for='answer1'>{{page.answer1}}</label><br>
+        <input type='checkbox' id='answer2' >
+        <label for='answer2'>{{page.answer2}}</label><br>
+        <input type='checkbox' id='answer3' >
+        <label for='answer3'>{{page.answer3}}</label><br>
+        <input type='checkbox' id='answer4' >
+        <label for='answer4'>{{page.answer4}}</label><br>
+
+        <input type='submit' value='Submit'></input>
+    </form>
+
+    <p><a href="{{ page.get_parent.url }}">Вернуться к разделу</a></p>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,20 @@
+{% load navigation_tags static %}
+
+
+    {% block main_navigation %}
+    <div class="bg-dark border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">
+        <img class='img-fluid rounded mx-auto d-block' src = "{% static 'img/logo.png' %}" alt='logo' width='120'>
+      </div>
+      <div class="list-group list-group-flush">
+        {# main_menu is defined in core/templatetags/navigation_tags.py #}
+            {% get_site_root as site_root %}
+        {% top_menu parent=site_root calling_page=self %}
+      </div>
+    </div>
+    {% endblock %}
+
+
+  
+
+    

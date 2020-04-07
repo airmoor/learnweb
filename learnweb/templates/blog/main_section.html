@@ -1,0 +1,14 @@
+{% load wagtailuserbar wagtailcore_tags %}
+{% load navigation_tags wagtailadmin_tags %}
+{% for post in blogpages %}
+    {% with post=post.specific %}
+        <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+            {% for subpost in post.get_children.live|dictsort:'title' %}
+                {% with subpost=subpost.specific %}
+                    {% if subpost.type == 'blog' %}
+                    <p><a href="{% pageurl subpost %}">{{ subpost.title }}</a></p>
+                    {% endif %}
+                {% endwith %} 
+            {% endfor %}
+    {% endwith %}
+{% endfor %}

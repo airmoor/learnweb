@@ -1,0 +1,63 @@
+{% load wagtailuserbar wagtailcore_tags %}
+{% load navigation_tags wagtailadmin_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+            {% include "includes/head.html"  %}
+        {% endblock head %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+    
+        <div class="d-flex" id="wrapper">
+         {% block main %}
+
+                {% block aside %}
+                    {% include "includes/aside.html" with parent=site_root calling_page=self %}
+                {% endblock aside %}
+              
+            <div id="page-content-wrapper">
+                {% block header %}
+                    {% include "includes/header.html"  %}
+                {% endblock header %}
+        
+            <div class="container content">
+
+                <div class="pt-3 pl-1 pr-1 p-lg-5 pr-xl-5 pl-xl-5 ml-xl-5 mr-xl-5">
+                {% block content %}
+                {% endblock %}
+                </div>
+                </div>
+            </div>
+    
+        </div>
+
+        {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/learnweb.js' %}"></script>    
+         
+        {% endblock main %}  
+         
+            <footer>
+                {% include "includes/footer.html" %}
+            </footer>
+            
+        </div>
+
+        <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <!-- Menu Toggle Script -->
+        <script>
+
+            $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+                var text = $("#menu-toggle").text();
+            });
+
+        </script>
+        {% load static %}
+
+    </body>
+</html>

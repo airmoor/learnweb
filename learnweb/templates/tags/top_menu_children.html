@@ -1,0 +1,13 @@
+{% load static navigation_tags wagtailcore_tags %}
+
+
+  {% for child in menuitems_children %}
+    <a href="{% pageurl child %}" class="nav-link grey-link submenu nav-item" role="menuitem">{{ child.title }}</a>
+  {% endfor %}
+
+<!-- 
+<a href="/lections" class="nav-link grey-link submenu nav-item" role="menuitem">Лекции</a>
+<a href="/labs" class="nav-link grey-link submenu nav-item" role="menuitem">Лабораторные</a>
+<a href="/tests" class="nav-link grey-link submenu nav-item" role="menuitem">Тесты</a> -->
+
+

@@ -1,0 +1,31 @@
+{% load static %}
+<meta charset="utf-8" >
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel = "shortcut icon" href = "{% static 'img/favicon.ico' %}">
+
+<title>
+    {% block title %}
+        {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+    {% endblock %}
+
+    {% block title_suffix %}
+        {% with self.get_site.site_name as site_name %}
+            {% if site_name %}- {{ site_name }}{% endif %}
+        {% endwith %}
+
+    {% endblock %}
+</title>
+
+<meta name="description" content="" >
+<meta name="viewport" content="width=device-width, initial-scale=1" >
+
+{# Global stylesheets #}
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/learnweb.css' %}" rel="stylesheet" >
+
+<!-- Custom Fonts -->
+<link href="{% static 'css/font-alegreya.css' %}" rel="stylesheet">
+<link href="{% static 'css/font-lato.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/font-lora.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/font-open-sans.css' %}" rel="stylesheet" type="text/css">

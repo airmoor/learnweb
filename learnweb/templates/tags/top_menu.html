@@ -1,0 +1,28 @@
+{% load static navigation_tags wagtailcore_tags %}
+{% get_site_root as site_root %}
+
+{% for menuitem in menuitems %}
+    {% if menuitem.active %}
+        <!-- <li class="nav-item active">  -->
+            {% if menuitem.show_dropdown %}
+
+            <a href="{% pageurl menuitem %}" class="list-group-item active bg-orange grey-link" >
+                {{ menuitem.title }} 
+            </a>
+            <!-- <div class='dropdown-menu'>
+                {# top_menu_children parent=menuitem #}
+            </div> -->
+            
+            {% else %}
+                <a href="{% pageurl menuitem %}" class="list-group-item active bg-orange grey-link">{{ menuitem.title }} </a>
+            {% endif %}
+        </li>
+
+    {% else %}
+        <a href="{% pageurl menuitem %}" class="list-group-item bg-dark grey-link">
+            {{ menuitem.title }} </a>
+    {% endif %} 
+
+
+{% endfor %}
+

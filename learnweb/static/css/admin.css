@@ -1,0 +1,227 @@
+header{
+    /* background-color: #f69515; #f58818*/
+    background-color:#f79518;
+}
+
+footer{
+    background:lightgrey;
+
+}
+
+
+.page-explorer .listing .index {
+    color: #fff;
+    background-color: #f79518;
+}
+
+.breadcrumb {
+    background: #f79518;
+    color: #fff;
+}
+
+.breadcrumb li a:after, .breadcrumb li span:after {
+    color: #d68113;
+    
+}
+
+a.status-tag.primary:hover, a.status-tag:hover, button.status-tag:hover {
+    border-color: #fff;
+    color: #fff;
+}
+
+.status-tag.primary {
+    color: #fff;
+    border-color: #d68113;
+    background: #f79518;
+}
+
+
+.listing .children a {
+    color: #f79518;
+    display: block;
+}
+
+.listing .no-children a:focus, .listing .no-children a:hover {
+    color: #f79518;
+}
+
+.listing th.ord--active a, .listing th.ord a:hover {
+    color: #f79518;
+}
+
+.listing.chooser tbody tr:hover {
+    background-color: grey;
+    color: #fff;
+}
+
+.listing td.children:hover {
+    background-color: #f79518;
+}
+
+.listing tr:hover .children {
+    background-color: #f79518;
+}
+
+.breadcrumb li:hover {
+    background: #d68113;
+}
+
+.tab-nav.merged {
+    background-color: #d68113;
+}
+.tab-nav a {
+    background-color: #d68113;
+}
+
+.tab-nav a {
+    background-color: #d68113;
+    color: #fff;
+    border-top: .3em solid #d68113;
+}
+
+/* TEXT */
+a {
+    color: grey;
+    text-decoration: none;
+}
+a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+footer .meta a:hover {
+    color: #d68113;
+}
+
+.listing .title .title-wrapper a:hover, .listing .title h2 a:hover {
+    color: #333;
+}
+
+.icon.teal {
+    color: #d68113;
+}
+
+
+/* BUTTONS */
+.button{
+    background-color:#f79518;
+    border:#f79518;
+}
+
+.button:hover {
+    background-color: #d68113;
+}
+
+.button-secondary {
+    background-color: #f79518;  
+    color:white;
+    border-color: #f79518;
+}
+
+.button-secondary:hover {
+    background: #d68113;
+    color: #fff;
+    border-color: #d68113;
+}
+
+header .button {
+    background-color: #d68113;
+    /* border:white; */
+}
+
+header .button:hover {
+    background-color: #d68113;
+    /* border:white; */
+}
+
+button.status-tag:hover {
+    border-color: #d68113;
+    background-color: #d68113;
+}
+
+.page-explorer .listing .index .button:hover {
+    color: #fff;
+    background: #d68113;
+    border:#d68113;
+}
+
+
+.page-explorer .listing .index .button.bicolor {
+    background: #d68113;
+    border:#d68113;
+}
+
+.t-inverted .u-btn-current {
+    background-color: #f79518;
+    border:0px;
+}
+
+.t-inverted .u-btn-current:hover {
+    background-color: #d68113;
+    border:0px;
+}
+
+.t-default .u-btn-current {
+    color: #f79518;
+    border:0px;
+}
+
+.t-default .u-btn-current:hover {
+    background: #f79518;
+    border: 0px;
+    color: #fff;
+}
+
+
+
+.listing .button-secondary {
+    color: #f79518;
+}
+
+.listing .button-secondary:hover {
+    background: #f79518;
+    color: #fff;
+}
+
+
+button.button.bicolor.icon.icon-plus {
+    background-color: #f79518;
+    border:#f79518;
+}
+button.button.bicolor.icon.icon-plus:hover {
+    background-color: #d68113;
+    border:#d68113;
+}
+
+
+
+
+.lock-status.status-tag {
+    color: #d68113;
+}
+
+.dropdown .dropdown-toggle:hover, .dropdown.open .dropdown-toggle {
+    background-color: #d68113;
+    border:white;
+}
+
+.dropdown .dropdown-toggle {
+    color: #fff;
+    background-color: #f79518;
+    border:white;
+}
+.dropdown ul a:hover {
+    background-color: #d68113;
+    border:white;
+}
+
+.dropdown ul {
+
+    background-color: #f79518;
+}
+
+.c-dropdown .t-inverted{
+    border:white;
+}
+
+

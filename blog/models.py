@@ -53,7 +53,6 @@ class BlogPage(Page):
         ordering = ['title']
 
 
-
 class BlogIndexPage(Page):
     type = models.CharField(max_length=5, default='index')
     intro = RichTextField(blank=True)
@@ -93,10 +92,8 @@ class TestPage(Page):
     status2 = models.CharField(max_length=1, choices=STATUS_CHOICES)
     status3 = models.CharField(max_length=1, choices=STATUS_CHOICES)
     status4 = models.CharField(max_length=1, choices=STATUS_CHOICES)
-    # answers = ClusterTaggableManager(blank=True, default = )
+
     content_panels = Page.content_panels + [
-        
-        # FieldPanel('question'),
         MultiFieldPanel([
             FieldPanel('answer1'),
             FieldPanel('status1'),
@@ -108,92 +105,37 @@ class TestPage(Page):
             FieldPanel('status4'),
            
         ], heading="Blog information"),
-     
     ]
 
+class QuestionAnswer(Orderable):
+    page = ParentalKey('QuestionPage', on_delete=models.CASCADE, related_name='questionanswer')
+    answer_text = models.CharField(max_length=200)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
 
-
-# class Question(models.Model):
-#     question_text = models.CharField(max_length=200)
-#     panels = [
-#         FieldPanel('question_text')
-#     ]
-
-#     def __str__(self):
-#         return self.question_text
-
-
-# class Answer(models.Model):
-#     answer_text = models.CharField(max_length=200)
-#     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
-
-#     panels = [
-#         FieldRowPanel([
-#             FieldPanel('answer_text'),
-#             FieldPanel('status')
-#         ], heading="Варианты ответа")
-#     ]
-
-#     def __str__(self):
-#         return self.answer_text        
-
-
-# class Choice(models.Model):
-#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-#     choice_text = models.CharField(max_length=200)
-#     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
-
-#     def __str__(self):
-#         return self.choice_text
-
-
-# class ChoiceInline(admin.TabularInline):
-#     model = Choice
-#     extra = 3
-
-# class QuestionAdmin(admin.ModelAdmin):
-#     fieldsets = [
-#         (None, {'fields': ['question_text']})
-#     ]
-#     inlines = [ChoiceInline]
-    
-#     class Meta:
-#         abstract = True
-
-
- 
-
-# class QuestionAnswer(Orderable, Answer):
-#     # answer_text = models.CharField(max_length=200)
-#     # status = models.CharField(max_length=1, choices=STATUS_CHOICES)
-#     page = ParentalKey('QuestionPage', on_delete=models.CASCADE, related_name='questionanswer')
-
-
-#     # panels = [
-#     #     FieldRowPanel([
-#     #         FieldPanel('answer_text'),
-#     #         FieldPanel('status')
-#     #     ], heading="Варианты ответа")
-#     # ]
-
-#     # def __str__(self):
-#     #     return self.answer_text    
+    panels = [
+        FieldRowPanel([
+            FieldPanel('answer_text'),
+            FieldPanel('status')
+        ], heading="Варианты ответа")
+    ]  
     
 
-# class QuestionPage(Page):
-#     type = models.CharField(max_length=8, default='question')
-#     content_panels = Page.content_panels + [
-        
-#         InlinePanel('questionanswer', label='Варианты ответа', min_num=2, max_num=10),
-     
-#     ]
-#     def get_context(self, request):
-#         context = super().get_context(request)
-#         pages = self.get_children().live()
-#         answers = get_all_child_relations(self)
+class QuestionPage(Page):
+    type = models.CharField(max_length=8, default='question')
+    content_panels = Page.content_panels + [
+        InlinePanel('questionanswer', label='Варианты ответа', min_num=2, max_num=10),
+    ]
+    def get_context(self, request):
+        context = super().get_context(request)
+        pages = self.get_children().live()
+        return context
+    
+    def answers(self):
+        answers = [
+            n for n in self.questionanswer.all()
+        ]
+        return answers
 
-#         return context
-        
 
 @register_snippet
 class BlogCategory(models.Model):
@@ -214,4 +156,3 @@ class BlogCategory(models.Model):
     class Meta:
         verbose_name_plural = 'Категории'
 
-        

@@ -80,33 +80,6 @@ class BlogIndexPage(Page):
         return context
 
 
-class TestPage(Page):
-    type = models.CharField(max_length=4, default='test')
-   
-    answer1 = models.CharField(max_length=250)
-    answer2 = models.CharField(max_length=250)
-    answer3 = models.CharField(max_length=250)
-    answer4 = models.CharField(max_length=250)
-
-    status1 = models.CharField(max_length=1, choices=STATUS_CHOICES)
-    status2 = models.CharField(max_length=1, choices=STATUS_CHOICES)
-    status3 = models.CharField(max_length=1, choices=STATUS_CHOICES)
-    status4 = models.CharField(max_length=1, choices=STATUS_CHOICES)
-
-    content_panels = Page.content_panels + [
-        MultiFieldPanel([
-            FieldPanel('answer1'),
-            FieldPanel('status1'),
-            FieldPanel('answer2'),
-            FieldPanel('status2'),
-            FieldPanel('answer3'),
-            FieldPanel('status3'),
-            FieldPanel('answer4'),
-            FieldPanel('status4'),
-           
-        ], heading="Blog information"),
-    ]
-
 class QuestionAnswer(Orderable):
     page = ParentalKey('QuestionPage', on_delete=models.CASCADE, related_name='questionanswer')
     answer_text = models.CharField(max_length=200)

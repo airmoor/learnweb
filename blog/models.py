@@ -31,10 +31,11 @@ class BlogPageTag(TaggedItemBase):
 class BlogPage(Page):
     type = models.CharField(max_length=4, default='blog')
     body = RichTextField(blank=True, features=['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 
-    'bold', 'italic', 'ol', 'ul', 'hr', 'link', 'document-link', 'image', 'embed', 'code'])
-    intro = models.CharField(max_length=250)
+    'bold', 'italic', 'ol', 'ul', 'hr', 'link', 'document-link', 'image', 'embed', 'code'],
+    verbose_name="Содержание")
+    intro = models.CharField(max_length=250, blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-    categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
+    categories = ParentalManyToManyField('blog.BlogCategory', blank=True, verbose_name="Категории")
     
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -43,14 +44,18 @@ class BlogPage(Page):
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
-            FieldPanel('intro'),
             FieldPanel('tags'),
             FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
-        ], heading="Blog information"),
+        ], heading="Информация"),
         FieldPanel('body'),
     ]
     class Meta:
-        ordering = ['title']
+        ordering = ['id']
+        # ordering = ['title']
+
+    class Meta:
+        verbose_name = 'Страница с теорией'
+
 
 
 class BlogIndexPage(Page):
@@ -59,7 +64,8 @@ class BlogIndexPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        blogpages = self.get_children().live().order_by('title')
+        # blogpages = self.get_children().live().order_by('title')
+        blogpages = self.get_children().live().order_by('id')
         context['blogpages'] = blogpages
         
         context['parents'] = self.get_ancestors()
@@ -79,11 +85,15 @@ class BlogIndexPage(Page):
 
         return context
 
+    class Meta:
+        verbose_name = 'Страница раздела'
+
+
 
 class QuestionAnswer(Orderable):
     page = ParentalKey('QuestionPage', on_delete=models.CASCADE, related_name='questionanswer')
-    answer_text = models.CharField(max_length=200)
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
+    answer_text = models.CharField(max_length=200, verbose_name="Ответ")
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name="Статус")
 
     panels = [
         FieldRowPanel([
@@ -108,6 +118,10 @@ class QuestionPage(Page):
             n for n in self.questionanswer.all()
         ]
         return answers
+
+    class Meta:
+        verbose_name = 'Страница вопроса'
+
 
 
 @register_snippet

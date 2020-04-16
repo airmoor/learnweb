@@ -56,6 +56,14 @@
                 var text = $("#menu-toggle").text();
             });
 
+
+            $('#checktest').click( function (e) {
+                e.preventDefault();
+                $(this).css({background: "rgb(228, 205, 255)"});
+                $(this).text("верно")
+            });
+
+
         </script>
         {% load static %}
 

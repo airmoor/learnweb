@@ -11,38 +11,20 @@
         {% with post=post.specific %}
             {% if post.type == 'blog' %}
                 <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-                <p>{{ post.intro }}</p>
                 {{ post.body|richtext }}
             {% endif %}
             
-            {% if post.type == 'test' %}
-
-                <p>{{ post.title }}</p>
-                <form action=''> 
-                <input type='checkbox' id='answer1' >
-                <label for='answer1'>{{post.answer1}}</label><br>
-                <input type='checkbox' id='answer2' >
-                <label for='answer2'>{{post.answer2}}</label><br>
-                <input type='checkbox' id='answer3' >
-                <label for='answer3'>{{post.answer3}}</label><br>
-                <input type='checkbox' id='answer4' >
-                <label for='answer4'>{{post.answer4}}</label><br>
-                <input type='submit' value='Проверить' class='btn btn-orange'></input>
-                </form>
-
-            {% endif %}
-
-             {% if post.type == 'question' %}
+            {% if post.type == 'question' %}
 
              <p>{{ post.title }}</p>
 
-             <form action=''>
+             <form  id="questionform" action=''>
                  {% for answer in post.answers %}
                      <input type='checkbox' id='answer1' >
                      <label for='answer1'>{{answer.answer_text}}</label><br>
                  {% endfor %}
                  <!-- <button type='submit'  class='btn btn-orange'>ОК</button> -->
-                 <input type='submit' value='Проверить' class='btn btn-orange'></input>
+                 <button type='submit' id='checktest' value='Проверить' class='btn btn-orange'>Проверить</button>
              </form>
 
             {% endif %}
@@ -54,11 +36,14 @@
                 {% for subpost in post.get_children.live|dictsort:'title' %}
                     {% with subpost=subpost.specific %}
                         {% if subpost.type == 'blog' %}
-                        <p><a href="{% pageurl post %}">{{ subpost.title }}</a></p>
+                            <p><a href="{% pageurl post %}">{{ subpost.title }}</a></p>
                         {% endif %}
                     {% endwith %}
-            {% endfor %}
+                {% endfor %}
             {% endif %}
         
         {% endwith %}
     {% endfor %}
+
+    
+ 

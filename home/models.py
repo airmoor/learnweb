@@ -7,7 +7,7 @@ from wagtail.admin.edit_handlers import FieldPanel
 
 
 class HomePage(Page):
-    body = RichTextField(blank=True)
+    body = RichTextField(blank=True, verbose_name="Содержание")
     type = models.CharField(max_length=4, default='home')
 
     content_panels = Page.content_panels + [
@@ -20,4 +20,7 @@ class HomePage(Page):
         context['mainpages'] = mainpages
         context['pages'] = Page.objects.live()
         return context
+
+    class Meta:
+        verbose_name = 'Домашняя страница'
 

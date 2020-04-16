@@ -3,12 +3,16 @@
 {% for post in blogpages %}
     {% with post=post.specific %}
         <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-            {% for subpost in post.get_children.live|dictsort:'title' %}
+        <ul>
+            {% for subpost in post.get_children.live|dictsort:'id' %}
                 {% with subpost=subpost.specific %}
                     {% if subpost.type == 'blog' %}
-                    <p><a href="{% pageurl subpost %}">{{ subpost.title }}</a></p>
+                    
+                    <li><a href="{% pageurl subpost %}">{{ subpost.title }}</a></li>
+                    
                     {% endif %}
                 {% endwith %} 
             {% endfor %}
+            </ul>
     {% endwith %}
 {% endfor %}
